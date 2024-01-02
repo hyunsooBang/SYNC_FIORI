@@ -23,8 +23,26 @@ sap.ui.define([
 
             onClick: function () {
                 //객체 가져오기
-                var oInput = this.getView().byId("idInput").getValue(); //컨트롤러와 연결된 뷰의 컨트롤id
-                alert(oInput);
+                var oInput1 = parseInt(this.getView().byId("idInput1").getValue()); //컨트롤러와 연결된 뷰의 컨트롤id
+                var oInput2 = parseInt(this.getView().byId("idInput2").getValue()); //컨트롤러와 연결된 뷰의 컨트롤id
+                var selected = this.getView().byId("select").getSelectedKey();
+                //선택된 key 출력
+
+                switch(selected) {
+                    case 'plus':
+                        alert(oInput1+oInput2);
+                        break;
+                    case 'minus':
+                        alert(oInput1-oInput2);
+                        break;
+                    case 'multiply':
+                        alert(oInput1*oInput2);
+                        break;
+                    case 'divide':
+                        alert(oInput1/oInput2);
+                        break;
+            }
+                
                 //this - 컨트롤러, getView - 컨트롤러 메서드, byId - 뷰 메서드, getValue - input 메서드
             }
         });

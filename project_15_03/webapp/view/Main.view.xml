@@ -6,7 +6,12 @@
         <content>
             <l:VerticalLayout >
                 <Input id="inputID" placeholder="문자열을 입력하세요."/>
-                <Button text="작성 완료" press="onclick" />
+                <l:HorizontalLayout >
+                    <FlexBox width="10px"/>
+                    <Button text="작성 완료" press="onclick" />
+                    <FlexBox width="20px"/>
+                    <Button text="초기화" press="onclickRevert" />
+                </l:HorizontalLayout>
                 <Text id="textID" text=""/>
             </l:VerticalLayout>
         

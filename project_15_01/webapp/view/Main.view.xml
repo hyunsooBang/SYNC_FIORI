@@ -1,0 +1,31 @@
+<View xmlns:core="sap.ui.core" controllerName="project1501.controller.Main"
+    xmlns="sap.ui.core.mvc" displayBlock="true"
+    xmlns:m="sap.m"
+    xmlns:l="sap.ui.layout"> 
+    <m:Page id="page" title="FIORI 계산기 실습">
+        <m:content>
+            <l:VerticalLayout width="210px" >
+                <m:Input id="idInput" placeholder="연산자1" type="Number" value='23' />
+                <m:Select showSecondaryValues="true" width="100%" >
+                   <m:items>
+                        <core:ListItem  text="+" key="plus" additionalText="Plus" /> 
+                        <core:ListItem  text="-" key="minus" additionalText="Minus" /> 
+                        <core:ListItem  text="*" key="multiply" additionalText="Multiply" /> 
+                        <core:ListItem  text="/" key="divide" additionalText="Divide" /> 
+                   </m:items>
+                    </m:Select>
+                <m:Input placeholder="연산자2" type="Number" />
+                <m:Button text="실행" icon="sap-icon://simulate" type="Emphasized" width="100%"/> 
+            </l:VerticalLayout>
+            
+        </m:content>
+        <m:footer>
+            <!--bar타입 클래스 적용-->
+            <m:Toolbar >
+                <m:ToolbarSpacer />
+                <m:Button text="보내기" press="onClick" />
+            </m:Toolbar>
+        </m:footer>
+    </m:Page>
+</View> 
+<!--html xml 주석-->

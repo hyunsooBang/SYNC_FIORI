@@ -1,0 +1,16 @@
+<mvc:View controllerName="project1503.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <l:VerticalLayout >
+                <Input id="inputID" placeholder="문자열을 입력하세요."/>
+                <Button text="작성 완료" press="onclick" />
+                <Text id="textID" text=""/>
+            </l:VerticalLayout>
+        
+        </content>
+        
+    </Page>
+</mvc:View>

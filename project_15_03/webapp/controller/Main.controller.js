@@ -12,8 +12,8 @@ sap.ui.define([
 
             },
             onclick: function(){
-                var inputValue = this.getView().byId("inputID").getValue();
-                this.getView().byId("textID").setText(inputValue);
+                var inputValue = this.byId("inputID").getValue();
+                this.byId("textID").setText(inputValue);
             },
             onclickRevert: function(){
                 this.getView().byId("inputID").setValue("");

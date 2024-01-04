@@ -1,0 +1,25 @@
+<mvc:View controllerName="project1506.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m" xmlns:c="sap.ui.core">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <Text text="여기는 Main!!!!!!!!!!"/>
+
+            <!--Nested View 중첩 뷰-->
+            <mvc:XMLView viewName="project1506.view.HelloPanel" />
+
+            <FlexBox height="10px"/>
+
+            <!--fragement View 조각 뷰-->
+            <c:Fragment fragmentName="project1506.view.fragment.HelloFrag" />
+
+            <!--fragment - Dialog 팝업 호출-->
+            <!--<c:Fragment fragmentName="project1506.view.fragment.Dialog" />
+            <Button text="frag view 팝업 오픈" press="onOpenDialog"/>-->
+
+            <Button text="Controller에서 팝업 오픈" press="onOpenDialog_con" />
+            <Button text="Controller에서 팝업 오픈 실습" press="onOpenDialog_con2" />
+
+        </content>
+    </Page>
+</mvc:View>

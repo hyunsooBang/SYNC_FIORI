@@ -1,0 +1,60 @@
+<mvc:View controllerName="project1507.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table">
+    <Page id="page" title="Model Example">
+        <FlexBox height="10px" />
+        <VBox alignContent="SpaceAround" alignItems="Center">
+            <Title text="My first name is {test>/name/firstName}, family name is {test>/name/lastName}." />
+            
+            <Text text="3rd tel is {test>/datas/2/tel}" /> 
+			<Button text="이름 변경" press="onClick" />
+		</VBox>
+
+        <t:Table
+				rows="{test>/datas}"
+				selectionMode="MultiToggle"
+				paste="onPaste"
+				ariaLabelledBy="title">
+				<t:extension>
+					<OverflowToolbar style="Clear">
+						<Title id="title" text="Products"/>
+					</OverflowToolbar>
+				</t:extension>
+				<t:columns>
+					<t:Column width="11rem">
+						<Label text="Name" />
+						<t:template>
+							<Text text="{test>name}" wrapping="false" />
+						</t:template>
+					</t:Column>
+                    <t:Column width="8rem">
+						<Label text="Age" />
+						<t:template>
+							<Text text="{test>age}" wrapping="false" />
+						</t:template>
+					</t:Column>
+                    <t:Column width="20rem">
+						<Label text="Tel." />
+						<t:template>
+							<Text text="{test>tel}" wrapping="false" />
+						</t:template>
+					</t:Column>
+				</t:columns>
+			</t:Table>
+
+        <FlexBox height="20px" />
+
+        <VBox alignItems="Center">
+            <HBox alignContent="SpaceAround" >
+                <Button text="Say Hello" press="onChange"/>
+                <FlexBox width="5px" />
+                <Input id="inputID" value="{test>/datas/0/name}"/>
+                <FlexBox width="5px" />
+                <Text id="textID" text="what is your name?"/>
+                <Text text="{test>/datas/0/name}" />
+            </HBox>
+        </VBox>
+      
+    </Page>
+</mvc:View>

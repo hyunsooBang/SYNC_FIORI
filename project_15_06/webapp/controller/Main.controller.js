@@ -23,13 +23,15 @@ sap.ui.define([
             onOpenDialog: function() {
                 this.byId("idDialog").open();
             },
-            onClose: function() {
-                //this.byId("idDialog").close(); //main view에서 가져옴
-                sap.ui.getCore().byId('idDialog').close(); //core에 가서 직접 가져옴
-            },
 
-            onClose2: function() {
-                sap.ui.getCore().byId('idDialogName').close(); //core에 가서 직접 가져옴
+            //button의 press 이벤트
+            //이벤트 함수는 이벤트 객체 oEvent 받아옴
+            onClose: function(oEvent) {
+                // getSource() 이벤트 생성 객체가 리턴됨
+                //this.byId("idDialog").close(); //간단하게 close
+                sap.ui.getCore().byId('idDialog').close(); //core에 가서 직접 가져옴
+                oEvent.getSource().getParent().close(); //버튼의 parent 찾아 close
+                sap.ui.getCore().byId('idDialogName').close();
             },
 
             onOpenDialog_con: function() {
@@ -38,11 +40,11 @@ sap.ui.define([
                 ? dialog.open() 
                 : Fragment.load({
                     name: "project1506.view.fragment.Dialog", //경로
-                    type: "XML",
+                    type: "XML", //default
                     controller: this
                 }).then(function(oDialog){
                     oDialog.open();
-                });
+                }); //id 중복 문제로 load Dialog는 한 번만 호출
                 
             },
 

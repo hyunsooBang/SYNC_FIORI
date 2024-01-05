@@ -8,13 +8,12 @@
         <m:content>
             <l:VerticalLayout width="210px" >
                 <m:Input id="idInput1" placeholder="연산자1" type="Number"  />
-                <m:Select showSecondaryValues="true" width="100%" id="select">
+                <m:Select showSecondaryValues="true" 
+                width="100%" id="select"
+                items="{cal>/datas}" >
                    <m:items>
-                        <core:ListItem  text="+" key="plus" additionalText="Plus" /> 
-                        <core:ListItem  text="-" key="minus" additionalText="Minus" /> 
-                        <core:ListItem  text="*" key="multiply" additionalText="Multiply" /> 
-                        <core:ListItem  text="/" key="divide" additionalText="Divide" /> 
-                   </m:items>
+                        <core:ListItem  text="{cal>text}" key="{cal>key}" additionalText="{cal>additionalText}" /> 
+                        </m:items>
                     </m:Select>
                 <m:Input id="idInput2" placeholder="연산자2" type="Number" />
                 <m:Button text="실행" icon="sap-icon://simulate" type="Emphasized" width="100%" press="onClick"/> 
@@ -22,15 +21,33 @@
 
             <!--sap.ui.table.Table -->
             <t:Table
-				rows="{/ProductCollection}"
+				rows="{local>/history}"
 				selectionMode="MultiToggle"
 				paste="onPaste"
 				ariaLabelledBy="title">
 				<t:columns>
-					<t:Column width="11rem">
-						<m:Label text="Product Name" />
+                    <t:Column>
+						<m:Label text="Number 1" />
 						<t:template>
-							<m:Text text="{Name}" wrapping="false" />
+							<m:Text text="{local>num1}" wrapping="false" />
+						</t:template>
+					</t:Column>
+                    <t:Column>
+						<m:Label text="Operator" />
+						<t:template>
+							<m:Text text="{local>oper}" wrapping="false" />
+						</t:template>
+					</t:Column>
+                    <t:Column>
+						<m:Label text="Number 2" />
+						<t:template>
+							<m:Text text="{local>num2}" wrapping="false" />
+						</t:template>
+					</t:Column>
+                    <t:Column>
+						<m:Label text="Result" />
+						<t:template>
+							<m:Text text="{local>res}" wrapping="false" />
 						</t:template>
 					</t:Column>
 				</t:columns>

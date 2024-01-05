@@ -14,8 +14,8 @@
             <c:Fragment fragmentName="project1506.view.fragment.HelloFrag" />
 
             <!--fragment - Dialog 팝업 호출-->
-            <!--<c:Fragment fragmentName="project1506.view.fragment.Dialog" />
-            <Button text="frag view 팝업 오픈" press="onOpenDialog"/>-->
+            <c:Fragment fragmentName="project1506.view.fragment.Dialog" />
+            <Button text="frag view 팝업 오픈" press="onOpenDialog"/>
 
             <Button text="Controller에서 팝업 오픈" press="onOpenDialog_con" />
             <Button text="Controller에서 팝업 오픈 실습" press="onOpenDialog_con2" />

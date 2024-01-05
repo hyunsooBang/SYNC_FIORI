@@ -9,7 +9,7 @@
         </content>
 
         <endButton>
-            <Button text="close" icon="sap-icon://decline" press="onClose2"/>
+            <Button text="close" icon="sap-icon://decline" press="onClose"/>
         </endButton>
    </Dialog>
 </c:FragmentDefinition>

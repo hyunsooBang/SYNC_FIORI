@@ -78,7 +78,17 @@ sap.ui.define([
                         
                 }
                 
-               
+                var oModel = this.getView().getModel('local'); //모델 뷰에서 가져오기
+                var history = oModel.getData().history; // 모델 전체 데이터 가져오기 ("." 사용해 특정데이터 가져오기)
+                //oModel.getProperty('/history'); // "/" 사용해 특정 경로의 데이터 가져오기 더느림
+
+                history.push({num1: oInput1, oper: tsel, num2: oInput2, res: res});
+                oModel.setData(history,true);
+
+                //oModel.selData(세팅할 데이터, 합치기여부 tf)
+                //oModel.setProperty(대상경로, 바꿀값)
+
+                //this.getView().setModel(oModel, 'local');
 
                 sap.m.MessageToast.show(res);
             

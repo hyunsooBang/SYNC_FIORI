@@ -5,10 +5,10 @@
     <Page id="page" title="Model Example">
         <FlexBox height="10px" />
         <VBox alignContent="SpaceAround" alignItems="Center">
-            <Title text="My first name is {test>/name/firstName}, family name is {test>/name/lastName}." />
-            
-            <Text text="3rd tel is {test>/datas/2/tel}" /> 
-			<Button text="이름 변경" press="onClick" />
+            <Input value="{/inpValue}" id="inpID" /> <!-- World -->
+			<Button text = "모델 세팅" press="onSetData" />
+            <Text text="{test>/textValue}" /> <!-- Hello -->
+			<!-- <Button text="이름 변경" press="onClick" /> -->
 		</VBox>
 
         <t:Table

@@ -7,6 +7,8 @@
     <m:Page id="page" title="FIORI 계산기 실습">
         <m:content>
             <l:VerticalLayout width="210px" >
+                <m:Title id="idTitle" text="{subTitle}" />
+                <!--binding="{cal>/title}-->
                 <m:Input id="idInput1" placeholder="연산자1" type="Number"  />
                 <m:Select showSecondaryValues="true" 
                 width="100%" id="select"
@@ -20,34 +22,56 @@
             </l:VerticalLayout>
 
             <!--sap.ui.table.Table -->
+            
             <t:Table
 				rows="{local>/history}"
 				selectionMode="MultiToggle"
 				paste="onPaste"
-				ariaLabelledBy="title">
+				ariaLabelledBy="title"
+                title = "History">
 				<t:columns>
-                    <t:Column>
-						<m:Label text="Number 1" />
+                    <t:Column hAlign="End">
+						<m:Label width="100%" textAlign="Center" text="Number 1" />
 						<t:template>
 							<m:Text text="{local>num1}" wrapping="false" />
 						</t:template>
 					</t:Column>
-                    <t:Column>
-						<m:Label text="Operator" />
+                    <t:Column hAlign="Center">
+						<m:Label width="100%" textAlign="Center" text="Operator" />
 						<t:template>
 							<m:Text text="{local>oper}" wrapping="false" />
 						</t:template>
 					</t:Column>
-                    <t:Column>
-						<m:Label text="Number 2" />
+                    <t:Column hAlign="End">
+						<m:Label width="100%" textAlign="Center" text="Number 2" />
 						<t:template>
 							<m:Text text="{local>num2}" wrapping="false" />
 						</t:template>
 					</t:Column>
-                    <t:Column>
-						<m:Label text="Result" />
+                    <t:Column hAlign="End">
+						<m:Label width="100%" textAlign="Center" text="Result" />
 						<t:template>
 							<m:Text text="{local>res}" wrapping="false" />
+						</t:template>
+					</t:Column>
+                    <t:Column hAlign="Center">
+						<m:Label width="100%" textAlign="Center" text="Status" />
+						<t:template>
+							<core:Icon
+                                src="sap-icon://favorite"
+                                class="size1"
+                                color="{
+                                    path: 'local>res',
+                                    formatter: '.fnColorFormat'
+                                }" 
+                                visible="{= ${local>res} > 100 }">
+                                <!--
+                                    color="{=${local>res} > 100 ? 'lightgreen' : 'orange'}" 
+                                -->
+                                <core:layoutData>
+                                    <m:FlexItemData growFactor="1" />
+                                </core:layoutData>
+                            </core:Icon>
 						</t:template>
 					</t:Column>
 				</t:columns>

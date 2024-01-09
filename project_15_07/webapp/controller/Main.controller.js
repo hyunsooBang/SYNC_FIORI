@@ -7,8 +7,12 @@ sap.ui.define([
     function (Controller, JSONModel) {
         "use strict";
 
+        // 클로저 변수 (전역변수)
+        // var TEST = "okok";
         return Controller.extend("project1507.controller.Main", {
+            // TEST = "OKOK"; 이것도 같음
             onInit: function () {
+                // this.TEST = "OKOK"; 변수 사용
                  var oData = { 
                     name: {
                         firstName : 'Hyunsoo',
@@ -18,7 +22,8 @@ sap.ui.define([
                         { name: 'Kim', age: 30, tel: '010-1234-5678' },
                         { name: 'Park', age: 12, tel: '010-1234-1111' },
                         { name: 'Lee', age: 23, tel: '010-1111-5678' },
-                    ]
+                    ],
+                    textValue: "Hello"
                  };
 
                 
@@ -35,8 +40,11 @@ sap.ui.define([
             onChange: function() {
                 var inputValue = this.byId("inputID").getValue();
                 this.byId("textID").setText(` Hello ${inputValue} !`);
-                oData.datas[0].name = inputValue;
+                oModel = this.getView().getModel('test');
+                oModel.setProperty("/datas/0/name",inputValue);
+                
             },
+          
             onClick : function() {
                 // var oModel = this.getView().getModel('local'); //모델 뷰에서 가져오기
                 // var history = oModel.getData().history; // 모델 전체 데이터 가져오기 ("." 사용해 특정데이터 가져오기)
@@ -60,5 +68,23 @@ sap.ui.define([
                 //debugger;
 
             },
+            onSetData: function(oEvent) {
+                var oModel = this.getView().getModel(); //기본모델 호출
+                var oTestModel = this.getView().getModel('test');
+                
+                //var sInputData = oModel.getProperty("/inpValue");
+                var sInputData = oModel.getData().inpValue;
+                console.log(sInputData);
+
+                //oTestModel에 있는 textValue 데이터 변경
+                // Hello + input데이터
+
+                //var sNewInputData = this.byId("inpID").getValue(); -> 안가져와도 ㄱㅊ나봐
+                //oModel.setProperty("/inpValue",sNewInputData);
+                oTestModel.setData({textValue : `Hello ${sInputData}!` }, true);
+
+                
+
+            }
         });
     })

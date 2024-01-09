@@ -2,5 +2,6 @@
     "name" : "Bang Hyunsoo",
     "age" : 23 ,
     "title" : "Soobang's Page",
-    "list" : [{ "name" : "soobang"}]
+    "list" : [{ "name" : "soobang"}],
+    "inpValue" : "World"
 }

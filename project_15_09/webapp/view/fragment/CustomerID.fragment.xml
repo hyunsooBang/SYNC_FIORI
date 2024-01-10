@@ -1,0 +1,61 @@
+<c:FragmentDefinition xmlns:c="sap.ui.core" xmlns="sap.m">
+   <Dialog id="idCustomer"
+        contentWidth="70%"
+        title="Customer INFO Dialog Pop up"
+        contentHeight="50%"
+        draggable="true"
+        resizable="true" >
+        <content>
+            <Table id="idProductsTable2"
+							sticky="HeaderToolbar,ColumnHeaders"
+							inset="false"
+							items="{/Customers}"
+						class="sapFDynamicPageAlignContent"
+						width="auto"
+						mode="SingleSelectMaster"
+						selectionChange="onSelectionChange" >
+						<headerToolbar>
+							<Toolbar>
+								<Title text="Customer" level="H2"/>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column width="6em">
+								<Text text="Customer ID" /> 
+							</Column>
+							<Column width="6em">
+								<Text text="Company Name" /> 
+							</Column>
+							<Column width="6em">
+								<Text text="Contact Name" /> 
+							</Column>
+							<Column width="6em">
+								<Text text="Contact Title" /> 
+							</Column>
+							<Column width="6em">
+								<Text text="Address" /> 
+							</Column>
+	
+						
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{CustomerID}" />
+									<Text text="{CompanyName}" />
+									<Text text="{ContactName}" />
+                                    <Text text="{ContactTitle}" />
+                                    <Text text="{Address}" />
+									
+									
+								</cells>
+							</ColumnListItem>
+						</items> 
+						<!--columns와 items의 하위 클래스 객체 개수 동일-->
+					</Table>
+        </content>
+        <endButton>
+            <Button text="close" icon="sap-icon://decline" press="onClose"/>
+        </endButton>
+   </Dialog>
+</c:FragmentDefinition>

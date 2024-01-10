@@ -2,12 +2,13 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
-    "sap/ui/model/json/JSONModel"
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/core/Fragment"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, Filter, FilterOperator, JSONModel) {
+    function (Controller, Filter, FilterOperator, JSONModel, Fragment) {
         "use strict";
 
         return Controller.extend("odata.project1509.controller.Main", {
@@ -31,7 +32,11 @@ sap.ui.define([
                 }
             },
             onValueHelpRequest: function() {
-                sap.m.MessageToast.show('I am Hungry');
+                this.byId('idCustomer').open();
+                
+            },
+            onClose: function(){
+                this.byId('idCustomer').close();
             },
             onSearch: function() {
                 //로컬에 모델 세팅해서 id 데이터 한 번에 가져오기
@@ -57,8 +62,18 @@ sap.ui.define([
                 
             },
             onSelectionChange: function(oEvent) {
-                //oEvent.getParameters().listItem.getBindingContextPath() 
-                //-> key (/Orders(10249))
+                // 상대경로 지정된 데이터 셋에서 선택한 row 모델 경로 
+                var sPath = oEvent.getParameters().listItem.getBindingContextPath();
+                // 모델 경로 통해 해당 경로의 전체 데이터 얻음 (화면에 보이지 않아도 전체 객체 데이터 有)
+                var oSelectData = this.getView().getModel().getProperty(sPath);
+                
+                alert(oSelectData.ShipName);
+                // local 모델에 데이터를 담아두면 Dialog에서도 사용 가능
+                // local 이름의 JSONModel이 전역으로 사용할 수 있도록 생성되어 있음
+                // 주의) Fragment.load()를 통해서 팝업 호출 시 해당 팝업에 모델 데이터를 띄우기 위해선 
+                // 호출된 Dialog에 .selModel(모델객체) 해줘야함
+
+                
             }
         });
     });

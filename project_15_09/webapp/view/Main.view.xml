@@ -3,7 +3,8 @@
     xmlns="sap.m"
     xmlns:f="sap.f"
 	xmlns:layout="sap.ui.layout"
-    xmlns:fb="sap.ui.comp.filterbar">
+    xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:c="sap.ui.core">
     <f:DynamicPage id="dynamicPageId" headerExpanded="{/headerExpanded}" toggleHeaderOnTitleClick="{/titleClickable}">
 			<!-- DynamicPage Title -->
 			<f:title>
@@ -59,71 +60,74 @@
 			</f:header>
 			<f:content>
             <!--items="{
-                            path : '/Orders',
-                            filters: [
-                            { path: 'CustomerID', operator: 'EQ' , value1: 'VINET' }
-                            ],
-                            sorter: { path: 'EmployeeID', descending: false}
+						path : '/Orders',
+						filters: [
+						{ path: 'CustomerID', operator: 'EQ' , value1: 'VINET' }
+						],
+						sorter: { path: 'EmployeeID', descending: false}
 
-                        }"-->
-				<Table id="idProductsTable"
-						sticky="HeaderToolbar,ColumnHeaders"
-						inset="false"
-						items="{/Orders}"
-					   class="sapFDynamicPageAlignContent"
-					   width="auto"
-                       mode="SingleSelectMaster"
-                       selectionChange="onSelectionChange" >
-					<headerToolbar>
-						<Toolbar>
-							<Title text="Products" level="H2"/>
-						</Toolbar>
-					</headerToolbar>
-					<columns>
-						<Column width="6em">
-							<Text text="Order ID" /> 
-						</Column>
-                        <Column width="6em">
-							<Text text="Customer ID" /> 
-						</Column>
-                        <Column width="4em">
-							<Text text="Employee ID" /> 
-						</Column>
-                        <Column width="8em">
-							<Text text="Order Date" /> 
-						</Column>
-                        <Column width="8em">
-							<Text text="Required Date" /> 
-						</Column>
-                        <Column width="8em">
-							<Text text="Shipped Date" /> 
-						</Column>
-                    
-					</columns>
-					<items>
-						<ColumnListItem>
-							<cells>
-                                <Text text="{OrderID}" />
-                                <Text text="{CustomerID}" />
-                                <Text text="{EmployeeID}" />
-                                <Text text="{
-                                    path: 'OrderDate',
-                                    formatter: '.fnDateToString'
-                                }"  />
-                                 <Text text="{
-                                    path: 'RequiredDate',
-                                    formatter: '.fnDateToString'
-                                }"  />
-                                 <Text text="{
-                                    path: 'ShippedDate',
-                                    formatter: '.fnDateToString'
-                                }"  />
-                                
-							</cells>
-						</ColumnListItem>
-					</items> 
-                    <!--columns와 items의 하위 클래스 객체 개수 동일-->
-				</Table>
+					}"-->
+				<VBox>
+					<Table id="idProductsTable"
+							sticky="HeaderToolbar,ColumnHeaders"
+							inset="false"
+							items="{/Orders}"
+						class="sapFDynamicPageAlignContent"
+						width="auto"
+						mode="SingleSelectMaster"
+						selectionChange="onSelectionChange" >
+						<headerToolbar>
+							<Toolbar>
+								<Title text="Products" level="H2"/>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column width="6em">
+								<Text text="Order ID" /> 
+							</Column>
+							<Column width="6em">
+								<Text text="Customer ID" /> 
+							</Column>
+							<Column width="4em">
+								<Text text="Employee ID" /> 
+							</Column>
+							<Column width="8em">
+								<Text text="Order Date" /> 
+							</Column>
+							<Column width="8em">
+								<Text text="Required Date" /> 
+							</Column>
+							<Column width="8em">
+								<Text text="Shipped Date" /> 
+							</Column>
+						
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{OrderID}" />
+									<Text text="{CustomerID}" />
+									<Text text="{EmployeeID}" />
+									<Text text="{
+										path: 'OrderDate',
+										formatter: '.fnDateToString'
+									}"  />
+									<Text text="{
+										path: 'RequiredDate',
+										formatter: '.fnDateToString'
+									}"  />
+									<Text text="{
+										path: 'ShippedDate',
+										formatter: '.fnDateToString'
+									}"  />
+									
+								</cells>
+							</ColumnListItem>
+						</items> 
+						<!--columns와 items의 하위 클래스 객체 개수 동일-->
+					</Table>
+					<c:Fragment fragmentName="odata.project1509.view.fragment.CustomerID"/>
+				</VBox>
 			</f:content>
 			<!-- DynamicPage Footer -->
 			<f:footer>

@@ -1,7 +1,7 @@
 {
   "_version": "1.59.0",
   "sap.app": {
-    "id": "odata.project1509",
+    "id": "sap.btp.ux400solving15",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -13,11 +13,11 @@
     "sourceTemplate": {
       "id": "@sap/generator-fiori:basic",
       "version": "1.12.1",
-      "toolsId": "7ff5d59e-0bbe-4264-83e1-24757b7601cb"
+      "toolsId": "3645a442-8ec6-4cea-989c-5b0d2b3dada2"
     },
     "dataSources": {
       "mainService": {
-        "uri": "/northwind/northwind.svc/",
+        "uri": "/v2/northwind/northwind.svc/",
         "type": "OData",
         "settings": {
           "annotations": [],
@@ -66,16 +66,13 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "odata.project1509.i18n.i18n"
+          "bundleName": "sap.btp.ux400solving15.i18n.i18n"
         }
       },
       "": {
         "dataSource": "mainService",
         "preload": true,
         "settings": {}
-      },
-      "local" : {
-        "type": "sap.ui.model.json.JSONModel" 
       }
     },
     "resources": {
@@ -90,7 +87,7 @@
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
         "async": true,
-        "viewPath": "odata.project1509.view",
+        "viewPath": "sap.btp.ux400solving15.view",
         "controlAggregation": "pages",
         "controlId": "app",
         "clearControlAggregation": false
@@ -115,7 +112,7 @@
       }
     },
     "rootView": {
-      "viewName": "odata.project1509.view.App",
+      "viewName": "sap.btp.ux400solving15.view.App",
       "type": "XML",
       "async": true,
       "id": "App"

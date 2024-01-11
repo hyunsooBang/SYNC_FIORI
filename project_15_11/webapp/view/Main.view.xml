@@ -1,0 +1,145 @@
+<mvc:View controllerName="project1511.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:viz="sap.viz.ui5.controls" 
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:cm="sap.suite.ui.commons"
+    xmlns:c="sap.ui.core"
+    xmlns:micro="sap.suite.ui.microchart"
+    xmlns:t="sap.ui.table">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <cm:ChartContainer id="chartContainer" 
+            showFullScreen="true" title="Unit" >
+            <cm:content>
+                <!--차트-->
+                <cm:ChartContainerContent icon="sap-icon://business-objects-experience" title="Chart" >
+                    <cm:content>
+                        <viz:VizFrame id="idStackChart" 
+                            vizType="stacked_column" 
+                            uiConfig="{ 'applicationSet' : 'fiori' }"
+                            vizProperties="{
+                                'title' : { 'visible' : true, 'text' : 'Unit Chart' },
+                                'legendGroup' : { 
+                                    'layout' : { 'position' : 'bottom' }
+                                },
+                                'plotArea' : {
+                                    'drawingEffect' : 'glossy',
+                                    'dataLabel' : { 'visible' : true, 'type' : 'value' },
+                                    'colorPalette' : ['black','hotpink']
+                                }
+                            }">
+                            <viz:dataset>
+                                <viz.data:FlattenedDataset data="{/Products}">
+                                    <!--x축-->
+                                    <viz.data:dimensions>
+                                        <viz.data:DimensionDefinition name="상품명" value="{ProductName}" />
+                                    </viz.data:dimensions>
+
+                                    <!--y축-->
+                                    <viz.data:measures>
+                                        <viz.data:MeasureDefinition name="Stock" value="{UnitsInStock}"/>
+                                        <viz.data:MeasureDefinition name="Order" value="{UnitsOnOrder}"/>
+                                    </viz.data:measures>
+                                </viz.data:FlattenedDataset>
+                            </viz:dataset>
+                            
+                            <viz:feeds>
+                            
+                                <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="상품명"/>
+                                <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Stock,Order" />
+
+                            </viz:feeds>
+                        </viz:VizFrame>
+                    </cm:content>
+                </cm:ChartContainerContent>
+
+                <!--테이블-->
+                <cm:ChartContainerContent icon="sap-icon://table-chart" title="Table">
+                    <cm:content>
+                        <!--ui table-->
+                        <t:Table
+                            rows="{/Products}"
+                            selectionMode="MultiToggle"
+                            paste="onPaste"
+                            ariaLabelledBy="title"
+                            >
+                            <t:extension>
+                                <OverflowToolbar style="Clear">
+                                    <Title text="Products"/>
+                                </OverflowToolbar>
+                            </t:extension>
+                            <t:columns>
+                                <t:Column width="7rem" hAlign="End" >
+                                    <Label text="Product ID" />
+                                    <t:template>
+                                        <Text text="{ProductID}" wrapping="false" />
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="22rem">
+                                    <Label text="Product Name" />
+                                    <t:template>
+                                        <Text text="{ProductName}" wrapping="false" />
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="7rem" hAlign="End">
+                                    <Label text="Supplier ID" />
+                                    <t:template>
+                                        <Text text="{SupplierID}" wrapping="false" />
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="7rem" hAlign="End">
+                                    <Label text="Category ID" />
+                                    <t:template>
+                                        <Text text="{CategoryID}" wrapping="false" />
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="16rem">
+                                    <Label text="Quantity Per Unit" />
+                                    <t:template>
+                                        <Text text="{QuantityPerUnit}" wrapping="false" />
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="8rem" >
+                                    <Label text="Unit Price" />
+                                    <t:template>
+                                        <Text text="{UnitPrice}" wrapping="false" />
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="8rem" hAlign="End" >
+                                    <Label text="Units In Stock" />
+                                    <t:template>
+                                        <micro:RadialMicroChart size="S" 
+                                        percentage="{= Number(${UnitsInStock})/100}"  
+                                        valueColor="{= ${UnitsInStock}/10 > 0.3 ? 'Good' : 'Error'}"/>
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="8rem" >
+                                    <Label text="Units On Order" />
+                                    <t:template>
+                                        <Text text="{UnitsOnOrder}" wrapping="false" />
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="8rem">
+                                    <Label text="Reorder Level" />
+                                    <t:template>
+                                        <Text text="{ReorderLevel}" wrapping="false" />
+                                    </t:template>
+                                </t:Column>
+                                <t:Column width="8rem"  hAlign="Center">
+                                    <Label text="Discontinued" />
+                                    <t:template>
+                                        <Text text="{Discontinued}" wrapping="false" />
+                                    </t:template>
+                                </t:Column>
+                            </t:columns>
+                        </t:Table>
+                    </cm:content>
+                </cm:ChartContainerContent>
+            </cm:content>
+            </cm:ChartContainer>
+
+        </content>
+    </Page>
+</mvc:View>

@@ -39,8 +39,6 @@ sap.ui.define([
                 if(sValue) {
                     return "Yes"
                 }else return "No"
-
-                
             },
             onValueChange: function(){
                 var changeValue = this.byId("inputID").getValue();

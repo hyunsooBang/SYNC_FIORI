@@ -20,8 +20,11 @@ sap.ui.define([
                     OrderDate_end: null
                 }
                 this.getView().setModel(new JSONModel(oData), 'search');
-
+                this.oRouter = this.getOwnerComponent().getRouter();
+                
+               
             },
+            
             fnDateToString: function(sValue) {
                 if(sValue) {
                     var oFormat = sap.ui.core.format.DateFormat.getDateInstance({
@@ -66,8 +69,13 @@ sap.ui.define([
                 var sPath = oEvent.getParameters().listItem.getBindingContextPath();
                 // 모델 경로 통해 해당 경로의 전체 데이터 얻음 (화면에 보이지 않아도 전체 객체 데이터 有)
                 var oSelectData = this.getView().getModel().getProperty(sPath);
+
+                this.oRouter.navTo('RouteDetail', {
+                    OrderID: oSelectData.OrderID,
+                    
+                }, true);
                 
-                alert(oSelectData.ShipName);
+                //alert(oSelectData.OrderID);
                 // local 모델에 데이터를 담아두면 Dialog에서도 사용 가능
                 // local 이름의 JSONModel이 전역으로 사용할 수 있도록 생성되어 있음
                 // 주의) Fragment.load()를 통해서 팝업 호출 시 해당 팝업에 모델 데이터를 띄우기 위해선 

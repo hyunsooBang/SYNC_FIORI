@@ -18,8 +18,13 @@ sap.ui.define([
             _onPatternMatched: function(oEvent) {
                 // RouteDetail 라우트 객체의 Pattern이 일치할 때마다 해당 이벤트 실행
                 var oArgu = oEvent.getParameter('arguments');
-                this.byId("textID").setText(oArgu.OrderID);
-           
+                //this.byId("textID").setText(oArgu.OrderID);
+                //폼에 상대경로로 바인딩
+                // /EntitySetName(key='1', key='2')
+                // /EntitySetName('1')
+                // /Orders(1-248)
+                this.byId("idForm").bindElement(`/Orders(${oArgu.OrderID})`);
+
                 
             },
 

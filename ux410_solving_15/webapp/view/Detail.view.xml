@@ -1,0 +1,72 @@
+<mvc:View controllerName="sap.btp.ux410solving15.controller.Detail"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+    <Page id="page" title="{i18n>title}" showNavButton="true" navButtonPress="onNavBack">
+        <ObjectHeader
+		title="OrderID : {OrderID} " titleLevel="H1"
+		condensed="true"
+		class="sapUiResponsivePadding--header" >
+		<ObjectAttribute text="Order Detail View Details " />
+	    </ObjectHeader>
+        <VBox class="sapUiLargeMargin" >
+        <OverflowToolbar design="Transparent" height="3rem">
+                <Title text="Info" titleStyle="H3"/>
+         </OverflowToolbar>
+        <f:Form id="idForm"
+			editable="true"
+            >
+
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="4"
+					labelSpanL="4"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="1"
+					emptySpanL="1"
+					emptySpanM="1"
+					emptySpanS="0"
+					columnsXL="1"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="OrderID">
+							<f:fields>
+								<Text text="{OrderID}"   />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="ProductID">
+							<f:fields>
+								<Text text="{ProductID}" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="UnitPrice">
+							<f:fields>
+								<Text text="{UnitPrice}" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Quantity">
+							<f:fields>
+								<Text text="{Quantity}"  />
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="Discount">
+							<f:fields>
+								<Text text="{Discount}"  />
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+        </VBox>
+        
+    </Page>
+</mvc:View>

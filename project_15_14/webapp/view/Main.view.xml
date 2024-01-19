@@ -57,7 +57,7 @@
                             </OverflowToolbar>
                         </t:extension>
                         <t:columns>
-                            <t:Column >
+                            <t:Column  sortProperty="Memid">
                                 <Label text="Member ID" />
                                 <t:template>
                                     <Text text="{Memid}" wrapping="false" />

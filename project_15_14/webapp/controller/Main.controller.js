@@ -2,11 +2,13 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageBox",
+    "sap/ui/core/Fragment",
+    "sap/ui/model/Filter",
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, JSONModel, MessageBox) {
+    function (Controller, JSONModel, MessageBox,Fragment, Filter) {
         "use strict";
 
         return Controller.extend("project1514.controller.Main", {
@@ -44,6 +46,31 @@ sap.ui.define([
                 this.byId("idTable").clearSelection();
                 this.getView().getModel().refresh(true); //모델 리셋
             },
+            onRead: function(){
+                var oPopover = this.byId("myPopover");
+                var oPopoverModel = oPopover.getModel('popover');
+                
+                var oFilter = new Filter("Memnm","Contains", oPopoverModel.getData().Memnm);
+                var oDataModel = this.getView().getModel();
+
+                oDataModel.read('/Ztmember_sb15Set', {
+                    urlParameters: {
+                        "$expand":"WorkSet",
+                        "$select":"Memid,WorkSet"
+                     },
+                    filters:[oFilter],
+                    success: function(oReturn) {
+                        console.log("전체조회: ", oReturn);
+                    },
+                    error: function(oError){
+                        console.log('error',oError)
+                    }
+                });
+
+                
+                
+
+            },
             onEntity: function(){
                 var oDataModel = this.getView().getModel();
                 var sPath = oDataModel.createKey("/Ztmember_sb15Set",{
@@ -55,20 +82,40 @@ sap.ui.define([
                     }
                 });
             },
-            onEntitySet: function() {
+            onEntitySet: function(oEvent) {
                 // 전체 조회 구현
                 // get 요청: "/Ztmember_sb15Set"
                 var oDataModel = this.getView().getModel();
 
-                //entitySet, object
-                oDataModel.read('/Ztmember_sb15Set', {
-                    success: function(oReturn) {
-                        console.log("전체조회: ", oReturn);
-                    },
-                    error: function(oError) {
-                        console.log("전체조회 중 에러 발생: " , oError)
-                    }
+                var oButton = oEvent.getSource(),
+				    oView = this.getView();
+
+                // create popover
+                if (!this._pPopover) {
+                    this._pPopover = Fragment.load({
+                        id: oView.getId(), //this.byId로 접근 가능 if not sap.ui.getCore().byId
+                        name: "project1514.view.fragment.Popover",
+                        controller: this
+                    }).then(function(oPopover) {
+                        oPopover.setModel(new JSONModel(),'popover')
+                        oView.addDependent(oPopover);
+                        return oPopover;
+                    });
+                }
+                this._pPopover.then(function(oPopover) {
+                    oPopover.openBy(oButton);
                 });
+
+                // //entitySet, object
+                // oDataModel.read('/Ztmember_sb15Set', {
+                //     success: function(oReturn) {
+                //         console.log("전체조회: ", oReturn);
+                        
+                //     }.bind(this),
+                //     error: function(oError) {
+                //         console.log("전체조회 중 에러 발생: " , oError)
+                //     }
+                // });
             },
             onCreate: function() {
                 //데이터 생성
@@ -80,6 +127,9 @@ sap.ui.define([
                     "Memnm" : oJSONData.Memnm || "",
                     "Telno" : oJSONData.Telno || "",
                     "Email" : oJSONData.Email || ""
+                    //WorkSet: [
+                    //    {},{}...
+                    //]
                 }; //json 바로 넣어도 됨
                 oDataModel.create('/Ztmember_sb15Set', oBody, {
                     success: function() {

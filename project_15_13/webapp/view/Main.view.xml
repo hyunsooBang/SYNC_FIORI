@@ -62,31 +62,31 @@
                             </OverflowToolbar>
                         </t:extension>
                         <t:columns>
-                            <t:Column >
+                            <t:Column filterProperty="Productno" sortProperty="Productno">
                                 <Label text="Product no" />
                                 <t:template>
                                     <Text text="{Productno}" wrapping="false" />
                                 </t:template>
                             </t:Column>
-                            <t:Column >
+                            <t:Column filterProperty="Productname" >
                                 <Label text="Product name" />
                                 <t:template>
                                     <Text text="{Productname}" wrapping="false" />
                                 </t:template>
                             </t:Column>
-                            <t:Column >
+                            <t:Column filterProperty="Fname">
                                 <Label text="First Name" />
                                 <t:template>
                                     <Text text="{Fname}" wrapping="false" />
                                 </t:template>
                             </t:Column>
-                            <t:Column >
+                            <t:Column filterProperty="Lname">
                                 <Label text="Last name" />
                                 <t:template>
                                     <Text text="{Lname}" wrapping="false" />
                                 </t:template>
                             </t:Column>
-                            <t:Column >
+                            <t:Column filterProperty="Memo">
                                 <Label text="Memo" />
                                 <t:template>
                                     <Text text="{Memo}" wrapping="false" />
@@ -94,8 +94,7 @@
                             </t:Column>
                         </t:columns>
                     </t:Table>
-
-
-        </content>
+                  </content>
+         
     </Page>
 </mvc:View>

@@ -28,7 +28,7 @@ sap.ui.define([
             //이벤트 함수는 이벤트 객체 oEvent 받아옴
             onClose: function(oEvent) {
                 // getSource() 이벤트 생성 객체가 리턴됨
-                //this.byId("idDialog").close(); //간단하게 close
+                //this.byId("idDialog").close(); //간단하게 close -> 뷰에서 Dialog 생성 시
                 sap.ui.getCore().byId('idDialog').close(); //core에 가서 직접 가져옴
                 oEvent.getSource().getParent().close(); //버튼의 parent 찾아 close
                 sap.ui.getCore().byId('idDialogName').close();

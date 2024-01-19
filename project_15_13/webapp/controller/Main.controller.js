@@ -1,11 +1,13 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
+    "sap/ui/model/Filter",
+    "sap/ui/core/Fragment"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, JSONModel) {
+    function (Controller, JSONModel, Filter, Fragment) {
         "use strict";
 
         return Controller.extend("odata.project1513.controller.Main", {
@@ -21,6 +23,7 @@ sap.ui.define([
                 
             },
             onRowSelectionChange: function(oEvent) {
+                if(!oEvent.getParameter('rowContext')) return;
                 //모델 데이터 get 후 각 input에 세팅
                 // json model에 세팅해보기 
                 var sPath = oEvent.getParameter('rowContext').sPath;
@@ -42,17 +45,40 @@ sap.ui.define([
                 this.byId("idTable").clearSelection();
                 this.getView().getModel().refresh(true); //모델 리셋
             },
+            onClose: function(oEvent) {
+                sap.ui.getCore().byId('idDialog').close(); //core에 가서 직접 가져옴
+                oEvent.getSource().getParent().close(); //버튼의 parent 찾아 close
+              
+            },
+
             onEntitySet: function() {
                 // 전체 조회 구현
                 // get 요청: "/Products"
                 var oDataModel = this.getView().getModel();
+                var oFilter = new Filter("Productname","EQ", this.getView().getModel('data').getData().Productname);
 
                 //entitySet, object
                 oDataModel.read('/Products', {
-                    filters:[/*필터 객체 배열*/],
+                    filters:[oFilter],
                     success: function(oReturn) {
                         console.log("전체조회: ", oReturn);
-                    },
+                        var dialog = sap.ui.getCore().byId('idDialog');
+                        if(dialog){
+                            dialog.getModel('return').setData(oReturn);
+                            dialog.open();
+                        }
+                        else{
+                            Fragment.load({
+                                name: "odata.project1513.view.fragment.Dialog", //경로
+                                type: "XML", //default
+                                controller: this
+                            }).then(function(oDialog){
+                                oDialog.setModel(new JSONModel(oReturn),'return');
+                                oDialog.open(); 
+                                
+                            }); //id 중복 문제로 load Dialog는 한 번만 호출
+                        } 
+                    }.bind(this),
                     error: function(oError) {
                         console.log("전체조회 중 에러 발생: " , oError)
                     }

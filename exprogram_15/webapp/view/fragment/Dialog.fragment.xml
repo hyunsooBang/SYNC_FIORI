@@ -1,0 +1,71 @@
+<c:FragmentDefinition xmlns:c="sap.ui.core" xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    
+    xmlns:f="sap.ui.layout.form"
+   
+	>
+   <Dialog id="idDialog"
+        contentWidth="80%"
+        title="extra function"
+        contentHeight="50%"
+        draggable="true"
+        resizable="true"
+        
+         >
+        <content >
+        <f:SimpleForm id="SimpleForm"
+			editable="true"
+			layout="ColumnLayout"
+			columnsM="2"
+			columnsL="3"
+			columnsXL="4"
+			>
+			<f:content>
+				<c:Title text="Information" />
+				<Label text="Customer ID" />
+				<Text  text="{dialog>/results/0/CustomerID}" />
+				<Label text="Employee ID" />
+				<Text text="{dialog>/results/0/EmployeeID}" />
+                <Label text="Order Date" />
+				<Text text="{
+										path: 'dialog>/results/0/OrderDate',
+										formatter: '.fnDateToString'
+									}"  />
+                <Label text="Required Date" />
+				<Text text="{
+										path: 'dialog>/results/0/RequiredDate',
+										formatter: '.fnDateToString'
+									}"  />
+                <Label text="Shipped Date" />
+				<Text text="{
+										path: 'dialog>/results/0/ShippedDate',
+										formatter: '.fnDateToString'
+									}"  />
+
+				<c:Title text="Shipping" />
+				<Label text="Ship Via" />
+				<Text text="{dialog>/results/0/ShipVia}" />
+				<Label text="Freight" />
+				<Text text="{dialog>/results/0/Freight}" />
+                <Label text="Ship Name" />
+				<Text text="{dialog>/results/0/ShipName}" />
+                <Label text="Ship Address" />
+				<Text text="{dialog>/results/0/ShipAddress}" />
+                <Label text="Ship City" />
+				<Text text="{dialog>/results/0/ShipCity}" />
+                <Label text="Ship Region" />
+				<Text text="{dialog>/results/0/ShipRegion}" />
+                <Label text="Ship Postal Code" />
+				<Text text="{dialog>/results/0/ShipPostalCode}" />
+                <Label text="Ship Country" />
+				<Text text="{dialog>/results/0/ShipCountry}" />
+			</f:content>
+		</f:SimpleForm>
+            
+            
+        </content>
+        <endButton>
+            <Button text="close" icon="sap-icon://decline" press="onClose"/>
+        </endButton>
+   </Dialog>
+</c:FragmentDefinition>

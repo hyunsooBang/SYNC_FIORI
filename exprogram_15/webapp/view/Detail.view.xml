@@ -1,0 +1,63 @@
+<mvc:View controllerName="exam.exprogram15.controller.Detail"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+    <Page id="idPage"  showNavButton="true" navButtonPress="onNavBack" >
+        <content>
+            
+            <VBox >
+            <Table id="idProductsTable2"
+                        
+							sticky="HeaderToolbar,ColumnHeaders"
+							inset="false"
+						items="{details>/results}"
+						class="sapFDynamicPageAlignContent"
+						width="auto"
+						mode="SingleSelectMaster"
+						selectionChange="onSelectionChangeDetail"
+                         >
+						
+						<columns>
+							<Column >
+								<Text text="주문 ID" /> 
+							</Column>
+							<Column >
+								<Text text="상품 이름" /> 
+							</Column>
+							<Column hAlign="End">
+								<Text text="상품 금액" /> 
+							</Column>
+                            <Column hAlign="Center">
+								<Text text="수량" /> 
+							</Column>
+							<Column hAlign="End">
+								<Text text="할인율" /> 
+							</Column>
+							<Column hAlign="End">
+								<Text text="총 금액" /> 
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+                                    <Text text="{details>OrderID}" />
+									<Text text="{details>ProductName}" />
+                                    <ObjectIdentifier title="{details>UnitPrice}"  />
+                                    <Text text="{details>Quantity}" />
+									<Text text="{details>Discount}" />
+                                    <ObjectIdentifier title="{details>ExtendedPrice}"  />
+									
+                                    
+								</cells>
+							</ColumnListItem>
+						</items> 
+						<!--columns와 items의 하위 클래스 객체 개수 동일-->
+					</Table>
+                
+                    </VBox>
+        </content>
+        
+        
+    </Page>
+</mvc:View>
